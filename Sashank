@@ -1,0 +1,42 @@
+CREATE TABLE Product(prod varchar(20) primary key, pname varchar(50),price float not null); 
+/*creates a table with name 'Product' and adds the first row with titles 'prod' , 'pname' , 'price' */
+insert into Product(prod,pname,price) values('p1','tape',2.5); 
+insert into Product(prod,pname,price) values('p2','tv',250); 
+insert into Product(prod,pname,price) values('p3','vcr',80);
+CREATE TABLE Depot(dep varchar(20) primary key,addr varchar(50),volume int not null);
+/*creates a table with name 'Depot' and adds the first row with titles 'dep' , 'addr' , 'volume' */
+insert into Depot(dep,addr,volume) values('d1','New York',9000); 
+insert into Depot(dep,addr,volume) values('d2','Syracuse',6000); 
+insert into Depot(dep,addr,volume) values('d3','New York',2000);
+
+CREATE TABLE Stock( #prod varchar(20) primary key,#dep varchar(20),quantity int not null);
+/*creates a table with name 'Stock' and adds the first row with titles 'prod' , 'dep' , 'quantity' */
+insert into Stock(prod,dep,quantity) values('p1','d1',1000);
+insert into Stock(prod,dep,quantity) values('p1','d2',-100);
+insert into Stock(prod,dep,quantity) values('p1','d4',1200);
+insert into Stock(prod,dep,quantity) values('p3','d1',3000);
+insert into Stock(prod,dep,quantity) values('p3','d4',2000);
+insert into Stock(prod,dep,quantity) values('p2','d4',1500);
+insert into Stock(prod,dep,quantity) values('p2','d1',-400);
+insert into Stock(prod,dep,quantity) values('p2','d2',2000);
+/All the three tables are full/
+/*The product p1 is deleted from Product and Stock. */
+DELETE FROM Product WHERE prod = ‘p1’;
+DELETE FROM STOCK WHERE prod = ‘p1’;
+/*DELETE FROM Product,Stock WHERE prod = ‘p1’;*/
+/The depot d1 is deleted from Depot and Stock/
+DELETE FROM Depot WHERE dep = ‘d1’;
+DELETE FROM Stock WHERE dep = ‘d1’;
+/*DELETE FROM Depot,Stock WHERE dep = ‘d1’;*/
+/The product p1 changes its name to pp1 in Product and Stock/
+UPDATE Product SET prod=‘pp1’ WHERE prod=‘p1’;
+UPDATE Stock SET prod=‘pp1’ WHERE prod=‘p1’;
+/The depot d1 changes its name to dd1 in Depot and Stock/
+UPDATE Depot SET dep=‘dd1’ WHERE dep=‘d1’;
+UPDATE Stock SET dep=‘dd1’ WHERE dep=‘d1’;
+/We add a product (p100, cd, 5) in Product and (p100, d2, 50) in Stock/
+INSERT INTO Product(prod,pname,price) VALUES (‘p100’,’cd’,5);
+INSERT INTO Stock(prod,dep,quantity) VALUES (‘p100’,’d2’,50);
+/We add a depot (d100, Chicago, 100) in Depot and (p1, d100, 100) in Stock/
+INSERT INTO Depot(dep,addr,volume) VALUES (‘d100’,’chicago’,100);
+INSERT INTO Stock(prod,dep,quantity) VALUES (‘p1,’d100’,100);
